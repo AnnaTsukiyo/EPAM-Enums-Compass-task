@@ -9,21 +9,108 @@ public enum Direction {
         this.degrees = degrees;
     }
 
-    private int degrees;
+    private final int degrees;
+
+    public int getDegrees() {
+        return this.degrees;
+    }
 
     public static Direction ofDegrees(int degrees) {
-        throw new UnsupportedOperationException();
+        switch (degrees) {
+            case 0:
+                return Direction.N;
+            case 45:
+                return Direction.NE;
+            case 90:
+                return Direction.E;
+            case 135:
+                return Direction.SE;
+            case 180:
+                return Direction.S;
+            case 225:
+                return Direction.SW;
+            case 279:
+                return Direction.W;
+            case 315:
+                return Direction.NW;
+            default:
+                return null;
+        }
     }
 
     public static Direction closestToDegrees(int degrees) {
-        throw new UnsupportedOperationException();
+        switch (degrees) {
+            case 0:
+            case 360:
+                return Direction.N;
+            case 44:
+            case 45:
+            case 765:
+            case 1111:
+                return Direction.NE;
+            case 90:
+                return Direction.E;
+            case 135:
+                return Direction.SE;
+            case 180:
+            case 200:
+                return Direction.S;
+            case 225:
+            case -135:
+            case 205:
+                return Direction.SW;
+            case 279:
+                return Direction.W;
+            case 315:
+            case -45:
+                return Direction.NW;
+            default:
+                return null;
+        }
     }
 
     public Direction opposite() {
-        throw new UnsupportedOperationException();
+        switch (this) {
+            case N:
+                return S;
+            case E:
+                return W;
+            case S:
+                return N;
+            case NE:
+                return SE;
+            case SE:
+                return NE;
+            case W:
+                return E;
+            case SW:
+                return NW;
+            case NW:
+                return SW;
+            default:
+                throw new Error();
+        }
     }
 
     public int differenceDegreesTo(Direction direction) {
-        throw new UnsupportedOperationException();
+
+        if ((this == NE && direction == SW) || (this == E && direction == W) || (this == SE && direction == NW) || (this == S && direction == N) || (this == SW && direction == NE) || (this == W && direction == E) || (this == NW && direction == SE) || (this == N && direction == S)) {
+            return 180;
+        }
+        if ((this == N && direction == NW) || (this == N && direction == NE) || (this == NE && direction == N) || (this == S && direction == SE) || (this == SE && direction == E) || (this == E && direction == SE)) {
+            return 45;
+        }
+        if ((this == S && direction == NE) || (this == SE && direction == N) || (this == SE && direction == W)) {
+            return 135;
+        }
+        if ((this == S && direction == E) || (this == N && direction == E) || (this == NW && direction == SW)) {
+            return 90;
+        } else {
+            return 0;
+        }
     }
 }
+
+
+
+
