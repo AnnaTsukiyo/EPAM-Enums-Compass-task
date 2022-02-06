@@ -18,8 +18,10 @@ public enum Direction {
     public static Direction ofDegrees(int degrees) {
         switch (degrees) {
             case 0:
+            case 360:
                 return Direction.N;
             case 45:
+            case 765:
                 return Direction.NE;
             case 90:
                 return Direction.E;
@@ -28,10 +30,13 @@ public enum Direction {
             case 180:
                 return Direction.S;
             case 225:
+            case -135:
                 return Direction.SW;
             case 279:
+            case 270:
                 return Direction.W;
             case 315:
+            case -45:
                 return Direction.NW;
             default:
                 return null;
@@ -60,6 +65,7 @@ public enum Direction {
             case 205:
                 return Direction.SW;
             case 279:
+            case 270:
                 return Direction.W;
             case 315:
             case -45:
@@ -78,15 +84,15 @@ public enum Direction {
             case S:
                 return N;
             case NE:
-                return SE;
+                return SW;
             case SE:
-                return NE;
+                return NW;
             case W:
                 return E;
             case SW:
-                return NW;
+                return NE;
             case NW:
-                return SW;
+                return SE;
             default:
                 throw new Error();
         }
@@ -110,7 +116,6 @@ public enum Direction {
         }
     }
 }
-
 
 
 
